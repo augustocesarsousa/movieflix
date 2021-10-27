@@ -128,31 +128,27 @@ public class User implements UserDetails, Serializable{
         return email;
     }
 
-	@Override
-	public boolean isAccountNonExpired() {
-		// TODO Auto-generated method stub
-		return false;
-	}
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
 
-	@Override
-	public boolean isAccountNonLocked() {
-		// TODO Auto-generated method stub
-		return false;
-	}
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
 
-	@Override
-	public boolean isCredentialsNonExpired() {
-		// TODO Auto-generated method stub
-		return false;
-	}
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
 
-	@Override
-	public boolean isEnabled() {
-		// TODO Auto-generated method stub
-		return false;
-	}	
-	
-	public boolean hasRole(String roleName) {
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
+    
+    public boolean hasRole(String roleName) {
     	for (Role role : roles) {
     		if(role.getAuthority().equals(roleName)) {
     			return true;
