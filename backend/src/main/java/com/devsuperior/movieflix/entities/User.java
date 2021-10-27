@@ -1,5 +1,6 @@
 package com.devsuperior.movieflix.entities;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
@@ -26,7 +27,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
 @Table(name = "tb_user")
-public class User implements UserDetails {
+public class User implements UserDetails, Serializable{
 
     private static final long serialVersionUID = 1L;
 	
@@ -53,12 +54,11 @@ public class User implements UserDetails {
 		
 	}
 
-	public User(Long id, String name, String email, String password, Set<Role> roles) {
+	public User(Long id, String name, String email, String password) {
 		this.id = id;
 		this.name = name;
 		this.email = email;
 		this.password = password;
-		this.roles = roles;
 	}
 
 	public Long getId() {
@@ -151,5 +151,14 @@ public class User implements UserDetails {
 		// TODO Auto-generated method stub
 		return false;
 	}	
+	
+	public boolean hasRole(String roleName) {
+    	for (Role role : roles) {
+    		if(role.getAuthority().equals(roleName)) {
+    			return true;
+    		}
+    	}
+    	return false;
+    }
 	
 }
