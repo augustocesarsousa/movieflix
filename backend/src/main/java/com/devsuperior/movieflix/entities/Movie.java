@@ -40,6 +40,10 @@ public class Movie implements Serializable {
 	public Movie() {
 		
 	}
+	
+	public Movie(Long id) {
+		this.id = id;
+	}
 
 	public Movie(Long id, String title, String subTitle, Integer year, String imgUrl, String synopsis,
 			Genre genre) {
