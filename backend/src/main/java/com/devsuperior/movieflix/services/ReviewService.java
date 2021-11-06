@@ -1,5 +1,8 @@
 package com.devsuperior.movieflix.services;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -29,6 +32,11 @@ public class ReviewService {
 		copyDtoToEntity(dto, entity, user);
 		entity = repository.save(entity);
 		return new ReviewDTO(entity);
+	}
+	
+	public List<ReviewDTO> findReviewsByMovieId(Long movieId){
+		List<Review> list = repository.findReviewsByMovieId(movieId);
+		return list.stream().map(x -> new ReviewDTO(x)).collect(Collectors.toList());
 	}
 
 	private void copyDtoToEntity(ReviewDTO dto, Review entity, User user) {
