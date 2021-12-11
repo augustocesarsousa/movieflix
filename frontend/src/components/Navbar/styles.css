@@ -1,0 +1,19 @@
+.main-nav {
+    padding: 0 30px;
+    min-height: 62px;
+  }
+  
+  .nav-logo-text h4 {
+    margin: 0;
+  }
+  
+  .nav-logo-text h4:hover {
+    color: #555;
+  }
+  
+  @media (min-width: 576px) {
+    .main-nav {
+      padding: 0 40px;
+      min-height: 62px;
+    }
+  }
