@@ -1,0 +1,33 @@
+.home-container {
+    padding: 15px 10px;
+    display: flex;
+    color: #fff;
+
+}
+
+.home-banner-container {
+    padding: 50px;
+}
+
+.home-banner-container h1 {
+    font-size: 48px;
+    line-height: 65px;
+    letter-spacing: -0.015em;
+    margin-bottom: 20px;
+}
+
+.home-banner-container p {
+    width: 300px;
+    font-size: 22px;
+    line-height: 30px;
+    letter-spacing: -0.015em;
+    margin-bottom: 50px;
+}
+
+.home-banner-container h1, .home-banner-container p {
+    margin-left: 30px;
+}
+
+.home-banner-container img {
+    width: 380px;
+}
