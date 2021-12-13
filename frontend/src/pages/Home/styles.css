@@ -1,27 +1,29 @@
 .home-container {
-    padding: 15px 10px;
+    padding: 10px;
     display: flex;
+    justify-content: space-around;
     color: #fff;
-
+    font-size: 16px;
 }
 
 .home-banner-container {
     padding: 50px;
+    display: none;
 }
 
 .home-banner-container h1 {
-    font-size: 48px;
+    font-size: 3em;
     line-height: 65px;
     letter-spacing: -0.015em;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .home-banner-container p {
     width: 300px;
-    font-size: 22px;
+    font-size: 1.2em;
     line-height: 30px;
     letter-spacing: -0.015em;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
 }
 
 .home-banner-container h1, .home-banner-container p {
@@ -30,4 +32,16 @@
 
 .home-banner-container img {
     width: 380px;
+}
+
+@media (min-width: 576px) {
+    .home-container {
+        padding: 50px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .home-banner-container {
+        display: unset;
+    }
 }

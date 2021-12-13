@@ -1,6 +1,7 @@
 import './styles.css';
 
 import BannerImage from '../../assets/images/banner-image.png';
+import Login from './Login';
 
 const Home = () => {
     return(
@@ -11,7 +12,7 @@ const Home = () => {
                 <img src={BannerImage} alt="imagem banner"/>
             </div>
             <div className="home-form-container">
-                <p>Login form</p>
+                <Login />
             </div>
         </div>
     );
