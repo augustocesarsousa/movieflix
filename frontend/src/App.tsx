@@ -1,11 +1,13 @@
 import './assets/styles/custom.scss';
 import './App.css';
-import ReviewCard from './components/ReviewCard';
+import Navbar from './components/Navbar';
+import MovieDetails from './pages/MovieDetails';
 
 function App() {
   return (
     <>
-      <ReviewCard />
+      <Navbar />
+      <MovieDetails />
     </>
   );
 }

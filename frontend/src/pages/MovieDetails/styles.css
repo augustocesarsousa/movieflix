@@ -1,0 +1,29 @@
+.detail-container {
+    padding: 10px;
+    font-size: 24px;
+    color: #fff;
+}
+
+.detail-contant-title h1 {
+    font-size: 1em;
+    width: 265px;
+    margin-bottom: 20px;
+}
+
+.detail-contant-search {
+    margin-bottom: 20px;
+}
+
+.detail-content-review {
+    padding-bottom: 30px;
+}
+
+@media(min-width: 576px) {
+    .detail-container {
+        padding: 40px;
+    }
+
+    .detail-contant-title h1{
+        width: 100%;
+    }
+}

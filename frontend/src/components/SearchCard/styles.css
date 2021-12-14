@@ -1,5 +1,6 @@
 .card-container {
     padding: 20px 10px;
+    text-align: center;
 }
 
 .base-input {
@@ -12,4 +13,14 @@
 .base-input:focus {
     background-color: #fff;
     color: #000;
+}
+
+@media(min-width: 768px){
+    .card-container {
+        padding: 20px 20px;
+    }
+
+    .card-container button {
+        width: 330px;
+    }
 }
