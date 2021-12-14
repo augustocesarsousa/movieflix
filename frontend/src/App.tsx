@@ -1,13 +1,11 @@
 import './assets/styles/custom.scss';
 import './App.css';
-import Navbar from './components/Navbar';
-import Movie from './pages/Movies';
+import SearchCard from './components/SearchCard';
 
 function App() {
   return (
     <>
-      <Navbar />
-      <Movie />
+      <SearchCard />
     </>
   );
 }
