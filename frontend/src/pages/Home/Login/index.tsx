@@ -20,7 +20,7 @@ type LocationState = {
 const Login = () => {
   const location = useLocation<LocationState>();
 
-  const { from } = location.state || { from: { pathname: '/admin' } };
+  const { from } = location.state || { from: { pathname: '/movies' } };
 
   const { authContextData, setAuthContextData } = useContext(AuthContext);
 
@@ -37,7 +37,6 @@ const Login = () => {
   const onSubmit = (formData: FormData) => {
     resquestBackendLogin(formData)
       .then((response) => {
-        console.log(response);
         saveAuthData(response.data);
         setHasError(false);
         setAuthContextData({
