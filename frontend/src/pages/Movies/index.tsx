@@ -1,13 +1,14 @@
+import { NavLink } from 'react-router-dom';
 import './styles.css';
 
-const Movie = () => {
+const Movies = () => {
     return (
         <div className="movie-container">
             <h1>Tela listagem de filmes</h1>
-            <a href="link"> Acessar /movies/1</a>
-            <a href="link"> Acessar /movies/2</a>
+            <NavLink to="/movies/1"> Acessar /movies/1</NavLink>
+            <NavLink to="/movies/2"> Acessar /movies/2</NavLink>
         </div>
     );
 }
 
-export default Movie;
+export default Movies;
