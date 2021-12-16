@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import ReviewCard from '../../components/ReviewCard';
 import SearchCard from '../../components/SearchCard';
 import { Review } from '../../types/review';
+import { SpringList } from '../../types/vendor/spring';
 import { requestBackend } from '../../util/requests';
 import './styles.css';
 
@@ -13,7 +14,7 @@ type UrlParams = {
 
 const MovieDetails = () => {
   const { movieId } = useParams<UrlParams>();
-  const [reviews, setReviews] = useState<Review>();
+  const [reviews, setReviews] = useState<SpringList<Review>>();
 
   useEffect(() => {
     const params: AxiosRequestConfig = {
@@ -22,11 +23,9 @@ const MovieDetails = () => {
     };
 
     requestBackend(params).then((response) => {
-      setReviews(response.data);
-      console.log(response.data);
-      console.log(reviews);
+      setReviews(response);
     });
-  }, []);
+  }, [movieId]);
 
   return (
     <div className="detail-container">
@@ -36,11 +35,11 @@ const MovieDetails = () => {
       <div className="detail-contant-search">
         <SearchCard />
       </div>
-      <div className="detail-content-review base-card">
-        {/* {reviews?.list.map((item) => (
-          <ReviewCard review={item} />
-        ))} */}
+      {reviews?.data.map((item) => (
+      <div className="detail-content-review base-card">        
+          <ReviewCard review={item} />        
       </div>
+      ))}
     </div>
   );
 };

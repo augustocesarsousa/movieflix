@@ -8,6 +8,7 @@ type Props = {
 }
 
 const ReviewCard = ({ review }: Props) => {
+
     return(
         <div className="review-container">
             <div className="review-content-username">

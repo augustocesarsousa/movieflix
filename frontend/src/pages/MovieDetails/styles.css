@@ -16,6 +16,7 @@
 
 .detail-content-review {
     padding-bottom: 30px;
+    margin-bottom: 10px;
 }
 
 @media(min-width: 576px) {
