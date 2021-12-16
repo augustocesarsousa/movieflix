@@ -5,6 +5,7 @@ import ReviewCard from '../../components/ReviewCard';
 import SearchCard from '../../components/SearchCard';
 import { Review } from '../../types/review';
 import { SpringList } from '../../types/vendor/spring';
+import { hasAnyRoles } from '../../util/auth';
 import { requestBackend } from '../../util/requests';
 import './styles.css';
 
@@ -32,13 +33,15 @@ const MovieDetails = () => {
       <div className="detail-contant-title">
         <h1>{`Tela detalhes do filme id: ${movieId}`}</h1>
       </div>
-      <div className="detail-contant-search">
-        <SearchCard />
-      </div>
+      {hasAnyRoles(['ROLE_MEMBER']) && (
+        <div className="detail-contant-search">
+          <SearchCard />
+        </div>
+      )}
       {reviews?.data.map((item) => (
-      <div className="detail-content-review base-card">        
-          <ReviewCard review={item} />        
-      </div>
+        <div className="detail-content-review base-card">
+          <ReviewCard review={item} />
+        </div>
       ))}
     </div>
   );
