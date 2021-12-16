@@ -10,7 +10,21 @@
   .nav-logo-text h4:hover {
     color: #555;
   }
+
+  .nav-button {
+    padding: 2px 25px;
+    border: 1px solid black;
+    border-radius: 10px;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 14px;
+  }
   
+  .nav-button:hover {
+    color: #555;
+    border-color: #555;
+  }
+
   @media (min-width: 576px) {
     .main-nav {
       padding: 0 40px;
