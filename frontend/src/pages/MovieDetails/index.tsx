@@ -35,7 +35,7 @@ const MovieDetails = () => {
       </div>
       {hasAnyRoles(['ROLE_MEMBER']) && (
         <div className="detail-contant-search">
-          <SearchCard />
+          <SearchCard movieId={Number(movieId)}/>
         </div>
       )}
       {reviews?.data.map((item) => (
