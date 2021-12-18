@@ -15,6 +15,7 @@ type UrlParams = {
 
 const MovieDetails = () => {
   const { movieId } = useParams<UrlParams>();
+
   const [reviews, setReviews] = useState<SpringList<Review>>();
 
   useEffect(() => {
@@ -35,13 +36,13 @@ const MovieDetails = () => {
       </div>
       {hasAnyRoles(['ROLE_MEMBER']) && (
         <div className="detail-contant-search">
-          <SearchCard movieId={Number(movieId)}/>
+          <SearchCard movieId={Number(movieId)} />
         </div>
       )}
       {reviews?.data.map((item) => (
-        <div className="detail-content-review base-card">
+        <div id='div-review' className="detail-content-review base-card" key={item.id}>
           <ReviewCard review={item} />
-        </div>
+      </div>
       ))}
     </div>
   );

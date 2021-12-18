@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { Review } from '../../types/review';
 import { postReview } from '../../util/requests';
 import ButtonDefault from '../ButtonDefault';
 import './styles.css';
@@ -13,7 +14,7 @@ type FormData = {
   movieId: number;
 };
 
-const SearchCard = ({ movieId }: Props) => {
+const SearchCard = ({ movieId}: Props) => {
   const [hasError, setHasError] = useState(false);
 
   const { register, handleSubmit } = useForm<FormData>();
@@ -23,7 +24,7 @@ const SearchCard = ({ movieId }: Props) => {
 
     postReview(formData)
       .then((response) => {
-        console.log(response);
+        console.log(response.data);
         setHasError(false);
       })
       .catch((error) => {
@@ -35,7 +36,7 @@ const SearchCard = ({ movieId }: Props) => {
   return (
     <div className="card-container base-card">
       {hasError && (
-        <div className="alert alert-danger">Erro ao fazer requisição!</div>
+        <div className="alert alert-danger">Erro ao fazer a avaliação!</div>
       )}
       <form onSubmit={handleSubmit(onSubmit)}>
         <input

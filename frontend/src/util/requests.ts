@@ -17,7 +17,7 @@ type LoginData = {
 type ReviewData = {
   movieId: number;
   text: string;
-}
+};
 
 export const resquestBackendLogin = (loginData: LoginData) => {
   const headers = {
@@ -52,12 +52,12 @@ export const requestBackend = (config: AxiosRequestConfig) => {
 
 export const postReview = (reviewData: ReviewData) => {
   const headers = {
-    'Content-Type': 'raw',
+    'Content-Type': 'application/json',
     Authorization: 'Bearer ' + getAuthdata().access_token,
   };
-  console.log(reviewData);
-  const data = JSON.stringify({reviewData});
 
+  const data = JSON.stringify(reviewData);
+  
   return axios({
     method: 'POST',
     baseURL: BASE_URL,
