@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Review } from '../../types/review';
 import { postReview } from '../../util/requests';
 import ButtonDefault from '../ButtonDefault';
 import './styles.css';

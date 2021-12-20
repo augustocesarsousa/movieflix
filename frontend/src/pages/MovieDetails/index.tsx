@@ -1,22 +1,61 @@
 import { AxiosRequestConfig } from 'axios';
 import { useEffect, useState } from 'react';
+import ReactDOM from 'react-dom';
+import { useForm } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
+import ButtonDefault from '../../components/ButtonDefault';
 import ReviewCard from '../../components/ReviewCard';
-import SearchCard from '../../components/SearchCard';
 import { Review } from '../../types/review';
 import { SpringList } from '../../types/vendor/spring';
 import { hasAnyRoles } from '../../util/auth';
-import { requestBackend } from '../../util/requests';
+import { postReview, requestBackend } from '../../util/requests';
 import './styles.css';
 
 type UrlParams = {
   movieId: string;
 };
 
-const MovieDetails = () => {
+type FormData = {
+  text: string;
+  movieId: number;
+};
+
+export const MovieDetails = () => {
   const { movieId } = useParams<UrlParams>();
 
   const [reviews, setReviews] = useState<SpringList<Review>>();
+
+  const [hasError, setHasError] = useState(false);
+
+  const { register, handleSubmit } = useForm<FormData>();
+
+  const onSubmit = (formData: FormData) => {
+    formData.movieId = Number(movieId);
+
+    postReview(formData)
+      .then((res) => {
+        reviews?.data.push(res.data);        
+        ReactDOM.render(<CreateReviewCard />, document.getElementById('div-review'));
+        setHasError(false);
+      })
+      .catch((error) => {
+        setHasError(true);
+        console.log('ERRO ', error);
+      });
+  };
+
+  const CreateReviewCard = () => {
+
+    const listItems = reviews?.data.map((item) => {
+      return(
+      <div className="detail-content-review base-card" key={item.id}>
+        <ReviewCard review={item} />
+      </div>);
+    });
+    return (
+      <>{listItems}</>
+    );
+  };
 
   useEffect(() => {
     const params: AxiosRequestConfig = {
@@ -36,14 +75,30 @@ const MovieDetails = () => {
       </div>
       {hasAnyRoles(['ROLE_MEMBER']) && (
         <div className="detail-contant-search">
-          <SearchCard movieId={Number(movieId)} />
+          <div className="card-container base-card">
+            {hasError && (
+              <div className="alert alert-danger">
+                Erro ao fazer a avaliação!
+              </div>
+            )}
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <input
+                {...register('text', {
+                  required: 'Campo obrigatório',
+                })}
+                type="text"
+                className="form-control base-input"
+                placeholder="Deixe sua avaliação aqui"
+                name="text"
+              />
+              <ButtonDefault text="Salvar avaliação" />
+            </form>
+          </div>
         </div>
       )}
-      {reviews?.data.map((item) => (
-        <div id='div-review' className="detail-content-review base-card" key={item.id}>
-          <ReviewCard review={item} />
+      <div id="div-review">
+        <CreateReviewCard />        
       </div>
-      ))}
     </div>
   );
 };
