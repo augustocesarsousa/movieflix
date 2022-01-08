@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import MovieCadList from '../../components/MovieCardList';
 import MovieFilter from '../../components/MovieFilter';
+import Pagination from '../../components/Pagination';
 import './styles.css';
 
 const Movies = () => {
@@ -31,6 +32,11 @@ const Movies = () => {
           </NavLink>
         </div>
       </div>
+      <Pagination
+        pageCount={10}
+        range={3}
+        onChange={() => {}}
+      />
     </div>
   );
 };
