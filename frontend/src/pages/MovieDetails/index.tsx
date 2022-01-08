@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import { useForm } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
 import ButtonDefault from '../../components/ButtonDefault';
+import MovieCardDetails from '../../components/MovieCardDetails';
 import ReviewCard from '../../components/ReviewCard';
 import { Review } from '../../types/review';
 import { SpringList } from '../../types/vendor/spring';
@@ -48,7 +49,7 @@ export const MovieDetails = () => {
 
     const listItems = reviews?.data.map((item) => {
       return(
-      <div className="detail-content-review base-card" key={item.id}>
+      <div key={item.id}>
         <ReviewCard review={item} />
       </div>);
     });
@@ -71,10 +72,10 @@ export const MovieDetails = () => {
   return (
     <div className="detail-container">
       <div className="detail-contant-title">
-        <h1>{`Tela detalhes do filme id: ${movieId}`}</h1>
+        <MovieCardDetails />
       </div>
       {hasAnyRoles(['ROLE_MEMBER']) && (
-        <div className="detail-contant-search">
+        <div className="detail-contant-add-review">
           <div className="card-container base-card">
             {hasError && (
               <div className="alert alert-danger">
@@ -96,7 +97,7 @@ export const MovieDetails = () => {
           </div>
         </div>
       )}
-      <div id="div-review">
+      <div className="detail-content-review base-card" id="div-review">
         <CreateReviewCard />        
       </div>
     </div>

@@ -6,9 +6,9 @@ import './styles.css';
 const Movies = () => {
   return (
     <div className="movies-container">
-        <div className="movies-filter-container">
-            <MovieFilter />
-        </div>
+      <div className="movies-filter-container">
+        <MovieFilter />
+      </div>
       <div className="row movies-card-container">
         <div className="col-sm-6 col-xl-3">
           <NavLink to="/movies/1">

@@ -10,12 +10,12 @@ type Props = {
 const ReviewCard = ({ review }: Props) => {
 
     return(
-        <div className="review-container">
-            <div className="review-content-username">
+        <div className="review-card-container">
+            <div className="review-card-content-username">
                 <StarImage />
                 <h2>{review.user.name}</h2>
             </div>
-            <div className="review-contet-message">
+            <div className="review-card-content-message">
                 <p>{review.text}</p>
             </div>
         </div>
