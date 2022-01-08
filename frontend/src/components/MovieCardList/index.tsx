@@ -1,18 +1,23 @@
+import { Movie } from '../../types/movie';
 import './styles.css';
 
-const MovieCadList = () => {
+type Props = {
+  movie: Movie;
+}
+
+const MovieCadList = ({movie}: Props) => {
   return (
     <div className="base-card movie-card-list-container">
       <div className="movie-card-list-banner-content">
         <img
-          src="https://image.tmdb.org/t/p/w533_and_h300_bestv2/5lAMQMWpXMsirvtLLvW7cJgEPkU.jpg"
+          src={movie.imgUrl}
           alt="Capa do filme"
         />
       </div>
       <div className="movie-card-list-description-content">
-        <h1 className="movie-card-list-description-title">A Voz do Silêncio</h1>
-        <p className="movie-card-list-description-year">2016</p>
-        <h2 className="movie-card-list-description-subtitle">Koe no Katachi</h2>
+        <h1 className="movie-card-list-description-title">{movie.title}</h1>
+        <p className="movie-card-list-description-year">{movie.year}</p>
+        <h2 className="movie-card-list-description-subtitle">{movie.subTitle}</h2>
       </div>
     </div>
   );
