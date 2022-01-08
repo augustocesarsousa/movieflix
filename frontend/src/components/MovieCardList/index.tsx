@@ -10,9 +10,9 @@ const MovieCadList = () => {
         />
       </div>
       <div className="movie-card-list-description-content">
-        <h1>A Voz do Silêncio</h1>
-        <h2>2016</h2>
-        <p>Koe no Katachi</p>
+        <h1 className="movie-card-list-description-title">A Voz do Silêncio</h1>
+        <p className="movie-card-list-description-year">2016</p>
+        <h2 className="movie-card-list-description-subtitle">Koe no Katachi</h2>
       </div>
     </div>
   );
