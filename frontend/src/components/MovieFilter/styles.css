@@ -1,0 +1,43 @@
+.movie-filter-container {
+  padding: 5px 20px;
+  margin-bottom: 20px;
+}
+
+.movie-filter-select__control {
+  width: 260px;
+  height: 50px;
+  background-color: #6c6c6c !important;
+}
+
+.movie-filter-select__placeholder,
+.movie-filter-select__single-value {
+  font-size: 16px;
+  line-height: 22px;
+  letter-spacing: -0.015em;
+  color: #fff !important;
+}
+
+.movie-filter-select__menu {
+  background-color: #6c6c6c !important;
+}
+
+.movie-filter-select__clear-indicator,
+.movie-filter-select__dropdown-indicator {
+  color: #fff !important;
+}
+
+.movie-filter-select__indicator-separator {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .movie-filter-container {
+    margin-bottom: 40px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .movie-filter-container {
+    padding: 15px 20px;
+  }
+}

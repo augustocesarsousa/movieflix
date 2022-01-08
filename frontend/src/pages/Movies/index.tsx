@@ -1,11 +1,15 @@
 import { NavLink } from 'react-router-dom';
 import MovieCadList from '../../components/MovieCardList';
+import MovieFilter from '../../components/MovieFilter';
 import './styles.css';
 
 const Movies = () => {
   return (
-    <div className="movie-container">
-      <div className="row movie-card-container">
+    <div className="movies-container">
+        <div className="movies-filter-container">
+            <MovieFilter />
+        </div>
+      <div className="row movies-card-container">
         <div className="col-sm-6 col-xl-3">
           <NavLink to="/movies/1">
             <MovieCadList />
