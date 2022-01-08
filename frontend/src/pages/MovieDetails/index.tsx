@@ -6,6 +6,7 @@ import { useParams } from 'react-router-dom';
 import ButtonDefault from '../../components/ButtonDefault';
 import MovieCardDetails from '../../components/MovieCardDetails';
 import ReviewCard from '../../components/ReviewCard';
+import { Movie } from '../../types/movie';
 import { Review } from '../../types/review';
 import { SpringList } from '../../types/vendor/spring';
 import { hasAnyRoles } from '../../util/auth';
@@ -24,6 +25,8 @@ type FormData = {
 export const MovieDetails = () => {
   const { movieId } = useParams<UrlParams>();
 
+  const [movie, setMovie] = useState<Movie>();
+
   const [reviews, setReviews] = useState<SpringList<Review>>();
 
   const [hasError, setHasError] = useState(false);
@@ -35,8 +38,12 @@ export const MovieDetails = () => {
 
     postReview(formData)
       .then((res) => {
-        reviews?.data.push(res.data);        
-        ReactDOM.render(<CreateReviewCard />, document.getElementById('div-review'));
+        reviews?.data.push(res.data);
+        DisplayNone();
+        ReactDOM.render(
+          <CreateReviewCard />,
+          document.getElementById('div-review')
+        );
         setHasError(false);
       })
       .catch((error) => {
@@ -46,17 +53,36 @@ export const MovieDetails = () => {
   };
 
   const CreateReviewCard = () => {
-
     const listItems = reviews?.data.map((item) => {
-      return(
-      <div key={item.id}>
-        <ReviewCard review={item} />
-      </div>);
+      return (
+        <div key={item.id}>
+          <ReviewCard review={item} />
+        </div>
+      );
     });
-    return (
-      <>{listItems}</>
-    );
+    return <>{listItems}</>;
   };
+
+  const DisplayNone = () => {
+    const element = document.getElementById('div-review');
+
+    if (reviews?.data.length === 0) {
+      element?.classList.add('display-none');
+    } else {
+      element?.classList.remove('display-none');
+    }
+  };
+
+  useEffect(() => {
+    const params: AxiosRequestConfig = {
+      url: `/movies/${movieId}`,
+      withCredentials: true,
+    };
+
+    requestBackend(params).then((response) => {
+      setMovie(response.data);
+    });
+  }, [movieId]);
 
   useEffect(() => {
     const params: AxiosRequestConfig = {
@@ -72,7 +98,7 @@ export const MovieDetails = () => {
   return (
     <div className="detail-container">
       <div className="detail-contant-title">
-        <MovieCardDetails />
+        {movie && <MovieCardDetails movie={movie} />}
       </div>
       {hasAnyRoles(['ROLE_MEMBER']) && (
         <div className="detail-contant-add-review">
@@ -91,14 +117,16 @@ export const MovieDetails = () => {
                 className="form-control base-input"
                 placeholder="Deixe sua avaliação aqui"
                 name="text"
+                id="input-review"
               />
               <ButtonDefault text="Salvar avaliação" />
             </form>
           </div>
         </div>
       )}
+      {DisplayNone()}
       <div className="detail-content-review base-card" id="div-review">
-        <CreateReviewCard />        
+        <CreateReviewCard />
       </div>
     </div>
   );

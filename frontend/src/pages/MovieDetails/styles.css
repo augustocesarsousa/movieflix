@@ -31,6 +31,10 @@
   padding: 10px;
 }
 
+.display-none{
+  display: none;
+}
+
 @media (min-width: 576px) {
   .card-container {
     padding: 20px;
