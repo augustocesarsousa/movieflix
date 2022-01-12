@@ -22,6 +22,7 @@ const Login = () => {
 
   const { from } = location.state || { from: { pathname: '/movies' } };
 
+  // eslint-disable-next-line
   const { authContextData, setAuthContextData } = useContext(AuthContext);
 
   const [hasError, setHasError] = useState(false);
