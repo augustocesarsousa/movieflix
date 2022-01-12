@@ -30,7 +30,6 @@ const MovieFilter = ({ onSubmitFilter }: Props) => {
       genre: getValues('genre'),
     };
     onSubmitFilter(obj);
-    console.log(value);
   };
 
   useEffect(() => {

@@ -35,11 +35,12 @@ export const MovieDetails = () => {
     register,
     handleSubmit,
     setValue,
+    formState: { errors },
   } = useForm<FormData>();
 
   const onSubmit = (formData: FormData) => {
     formData.movieId = Number(movieId);
-
+    console.log(formData.text);
     postReview(formData)
       .then((res) => {
         reviews?.data.push(res.data);
@@ -78,7 +79,9 @@ export const MovieDetails = () => {
   };
 
   const ToastError = () => {
-    toast.error('Avaliação não pode estar em branco!');
+    toast.error('Avaliação não pode estar em branco!', {
+      toastId: 0
+    });
   };
 
   useEffect(() => {
@@ -114,7 +117,7 @@ export const MovieDetails = () => {
             <form onSubmit={handleSubmit(onSubmit)}>
               <input
                 {...register('text', {
-                  required: 'Campo obrigatório',
+                  required: true,
                 })}
                 type="text"
                 className="form-control base-input"
@@ -122,6 +125,7 @@ export const MovieDetails = () => {
                 name="text"
                 id="input-review"
               />
+              {errors.text && ToastError()}
               <ButtonDefault text="Salvar avaliação" />
             </form>
           </div>
