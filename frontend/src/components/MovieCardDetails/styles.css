@@ -79,6 +79,7 @@
   .movie-card-details-banner-content img {
     width: 500px;
     height: 315px;
-    margin-right: 40px;
+    margin-right: 40px;    
+    margin-bottom: 0;
   }
 }

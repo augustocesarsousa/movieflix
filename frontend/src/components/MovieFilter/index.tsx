@@ -61,6 +61,14 @@ const MovieFilter = ({ onSubmitFilter }: Props) => {
               onChange={(value) => handleChangeGenre(value as Genre)}
               getOptionLabel={(genre: Genre) => genre.name}
               getOptionValue={(genre: Genre) => String(genre.id)}
+              theme={(theme) => ({
+                ...theme,
+                colors: {
+                  ...theme.colors,
+                  primary25: '#000',
+                  primary: '#FFC700',
+                },
+              })}
             />
           )}
         />

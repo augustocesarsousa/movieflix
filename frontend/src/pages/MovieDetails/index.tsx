@@ -11,6 +11,8 @@ import { Review } from '../../types/review';
 import { SpringList } from '../../types/vendor/spring';
 import { hasAnyRoles } from '../../util/auth';
 import { postReview, requestBackend } from '../../util/requests';
+import { toast } from 'react-toastify';
+
 import './styles.css';
 
 type UrlParams = {
@@ -29,9 +31,11 @@ export const MovieDetails = () => {
 
   const [reviews, setReviews] = useState<SpringList<Review>>();
 
-  const [hasError, setHasError] = useState(false);
-
-  const { register, handleSubmit } = useForm<FormData>();
+  const {
+    register,
+    handleSubmit,
+    setValue,
+  } = useForm<FormData>();
 
   const onSubmit = (formData: FormData) => {
     formData.movieId = Number(movieId);
@@ -44,11 +48,11 @@ export const MovieDetails = () => {
           <CreateReviewCard />,
           document.getElementById('div-review')
         );
-        setHasError(false);
+        setValue('text', '');
+        toast.info('Avaliação salva com sucesso!');
       })
-      .catch((error) => {
-        setHasError(true);
-        console.log('ERRO ', error);
+      .catch(() => {
+        ToastError();
       });
   };
 
@@ -71,6 +75,10 @@ export const MovieDetails = () => {
     } else {
       element?.classList.remove('display-none');
     }
+  };
+
+  const ToastError = () => {
+    toast.error('Avaliação não pode estar em branco!');
   };
 
   useEffect(() => {
@@ -103,11 +111,6 @@ export const MovieDetails = () => {
       {hasAnyRoles(['ROLE_MEMBER']) && (
         <div className="detail-contant-add-review">
           <div className="card-container base-card">
-            {hasError && (
-              <div className="alert alert-danger">
-                Erro ao fazer a avaliação!
-              </div>
-            )}
             <form onSubmit={handleSubmit(onSubmit)}>
               <input
                 {...register('text', {
